@@ -66,7 +66,7 @@ public class DivideAndConquer extends Solver {
             return slices;
         }
         else {
-            return new Greedy(getTarget(), getPizzas()).getSolution();
+            return new BruteForce(getTarget(), getPizzas()).getSolution();
         }
     }
 

@@ -29,7 +29,8 @@ public class Main {
         var total = Arrays.stream(arr).sum();
         System.out.println(total);
 
-        var solver = new DivideAndConquer(target, arr, 50).getSolution();
+        var solver = new DivideAndConquer(target, arr, 7).getSolution();
+        //var solver = new BruteForce(target, arr).getSolution();
 
         System.out.println("Need: "+ target +" : "+ Arrays.stream(solver).sum());
 
