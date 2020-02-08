@@ -8,4 +8,16 @@ public abstract class Solver {
     }
 
     public abstract int[] getSolution();
+
+    public int getTarget() {
+        return target;
+    }
+
+    public int[] getPizzas() {
+        return pizzas;
+    }
+
+    public int numPizzas() {
+        return getPizzas().length;
+    }
 }
