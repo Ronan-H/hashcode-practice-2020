@@ -29,7 +29,7 @@ public class Main {
         var total = Arrays.stream(arr).sum();
         System.out.println(total);
 
-        var solver = new DivideAndConquer(target, arr, 10).getSolution();
+        var solver = new DivideAndConquer(target, arr, 50).getSolution();
 
         System.out.println("Need: "+ target +" : "+ Arrays.stream(solver).sum());
 

@@ -18,7 +18,7 @@ public class DivideAndConquer extends Solver {
         mapping = new int[pizzas.length];
 
         for (int i = 0; i < pizzas.length; i++) {
-            mapping[i] = pizzas[i];
+            mapping[i] = i;
         }
     }
 
@@ -38,24 +38,29 @@ public class DivideAndConquer extends Solver {
 
             for (int i = 0; i < numPizzas(); i++) {
                 subArrs[i % 2][i / 2] = getPizzas()[i];
-                mappings[i % 2][i / 2] = getMapping()[i];
+                mappings[i % 2][i / 2] = i;
             }
 
             int aTarget = (int) Math.ceil(getTarget() / 2.0);
             int bTarget = getTarget() / 2;
 
-            DivideAndConquer a = new DivideAndConquer(aTarget, subArrs[0], mappings[0], chunkLinit);
-            DivideAndConquer b = new DivideAndConquer(bTarget, subArrs[1], mappings[1],  chunkLinit);
+            DivideAndConquer[] divs = {
+                    new DivideAndConquer(aTarget, subArrs[0], mappings[0], chunkLinit),
+                    new DivideAndConquer(bTarget, subArrs[1], mappings[1],  chunkLinit)
+            };
 
             int[][] sols = {
-                    a.getSolution(),
-                    b.getSolution()
+                    divs[0].getSolution(),
+                    divs[1].getSolution(),
             };
 
             int[] slices = new int[sols[0].length + sols[1].length];
 
-            for (int i = 0; i < slices.length; i++) {
-                slices[i] = getMapping()[sols[i % 2][i / 2]];
+            int counter = 0;
+            for (int i = 0; i < 2; i++) {
+                for (int j = 0; j < sols[i].length; j++) {
+                    slices[counter++] = divs[i].getMapping()[sols[i][j]];
+                }
             }
 
             return slices;
