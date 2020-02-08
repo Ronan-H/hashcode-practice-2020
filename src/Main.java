@@ -13,7 +13,7 @@ public class Main {
         System.out.println("hello");
 
 //        String fileName = "./input/d_quite_big.in";
-        String fileName = "./input/e_also_big.in";
+        String fileName = "./input/d_quite_big.in";
 
         var arr = getPizzas(fileName);
         var target = Files.newBufferedReader(Paths.get(fileName))
@@ -29,7 +29,7 @@ public class Main {
         var total = Arrays.stream(arr).sum();
         System.out.println(total);
 
-        var solver = new Greedy(target, arr).getSolution();
+        var solver = new DivideAndConquer(target, arr, 10).getSolution();
 
         System.out.println("Need: "+ target +" : "+ Arrays.stream(solver).sum());
 
