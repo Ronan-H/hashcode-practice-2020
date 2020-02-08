@@ -12,12 +12,26 @@ public class Main {
     public static void main(String[] args) throws IOException {
         System.out.println("hello");
 
-        String fileName = "./input/d_quite_big.in";
+//        String fileName = "./input/d_quite_big.in";
+        String fileName = "./input/e_also_big.in";
 
         var arr = getPizzas(fileName);
+        var target = Files.newBufferedReader(Paths.get(fileName))
+                .lines()
+                .limit(1)
+                .map(it -> it.split(" "))
+                .flatMap(Arrays::stream)
+                .mapToInt(Integer::valueOf)
+                .findFirst()
+                .orElseGet(() ->0);
 //        System.out.println(Arrays.toString(arr));
 
-        var solver = new Greedy(1_000_000_000, arr).getSolution();
+        var total = Arrays.stream(arr).sum();
+        System.out.println(total);
+
+        var solver = new Greedy(target, arr).getSolution();
+
+        System.out.println("Need: "+ target +" : "+ Arrays.stream(solver).sum());
 
         writeToFile("output", solver);
 
